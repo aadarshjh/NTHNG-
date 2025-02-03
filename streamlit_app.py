@@ -5,7 +5,7 @@ import google.generativeai as genai
 
 model = genai.GenerativeModel('gemini-1.5-flash')
 
-genai.configure(api_key = "AIzaSyAFJFExnKB0Xlur7KNT-mtsfHvZu2seEU4")
+genai.configure(api_key = "AIzaSyCLgJyAj-H8tJKG8c4bptHy1jHvi6-Vu2s")
 def get_gemini_response(input_text, image_data, prompt):
     response = model.generate_content([input_text, image_data[0], prompt])
     return response.text
@@ -23,11 +23,11 @@ def input_image_details(uploaded_file):
     else:
         raise FileNotFoundError("No file was uploaded")
     
-st.set_page_config(page_title = "IDKBill")
-st.sidebar.header("Invoice")
-st.sidebar.write("I'm OP")
-st.header("Invoice")
-st.subheader("Manage your expenses")
+st.set_page_config(page_title = "RythRec")
+'''st.sidebar.header("Mood's Recommendation")
+st.sidebar.write("I'm OP")'''
+st.header("Mood's Recommendation")
+st.subheader("Check your mood and I'll suggest")
 input = st.text_input("What do you want me to do?",key = "input")
 uploaded_file = st.file_uploader("Choose an image",type = ["jpg","jpeg","png"])
 image = ""
@@ -38,11 +38,23 @@ if uploaded_file is not None:
 ssubmit = st.button("Submit")
 
 input_prompt = """
-You are an expert in reading invoices. We are going to upload an image of an in and you will have to answer
-any type of questions that the user asks you.
-You have to greet the user first. Make sure to keep the fonts uniform and give the items list in a point-wise 
-format.
-At the end, make sure to repeat the name of out app "IDKBill" and ask the user to use it again.
+You are an advanced AI music expert with the following capabilities:
+🎵 Musical Expertise:
+Comprehensive knowledge of various music genres, artists, and styles
+Understanding of music theory and composition
+Ability to analyze and interpret musical elements
+🖼️ Image Analysis:
+Advanced facial emotion recognition technology
+Capability to detect mood and sentiment from user-uploaded images
+🎧 Personalized Recommendations:
+Skill in matching emotional states to appropriate music
+Ability to suggest songs, playlists, or genres based on detected mood
+💡 Interaction Approach:
+Provide friendly and empathetic responses
+Offer brief explanations for music suggestions
+Respect user privacy and emotional state
+When a user uploads an image, analyze their facial expression to determine their emotional state. Then, provide music recommendations tailored to their current mood, explaining briefly why each suggestion might resonate with them emotionally.
+Provide the YouTube and Spotify link along with the name of the songs
 """
 if ssubmit:
     image_data = input_image_details(uploaded_file)
