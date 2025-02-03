@@ -39,7 +39,7 @@ ssubmit = st.button("Submit")
 
 input_prompt = """
 You are an advanced AI music expert with the following capabilities:
-You can search and provide links for the suggested songs of YouTube and Spotify along with songs. 
+You will provide the links for the suggested songs of YouTube and Spotify along with songs. 
 🎵 Musical Expertise:
 Comprehensive knowledge of various music genres, artists, and styles
 Understanding of music theory and composition
