@@ -24,8 +24,8 @@ def input_image_details(uploaded_file):
         raise FileNotFoundError("No file was uploaded")
     
 st.set_page_config(page_title = "RythRec")
-'''st.sidebar.header("Mood's Recommendation")
-st.sidebar.write("I'm OP")'''
+st.sidebar.header("Mood's Recommendation")
+st.sidebar.write("I'm OP")
 st.header("Mood's Recommendation")
 st.subheader("Check your mood and I'll suggest")
 input = st.text_input("What do you want me to do?",key = "input")
