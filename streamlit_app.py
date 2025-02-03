@@ -55,7 +55,6 @@ Offer brief explanations for music suggestions
 Respect user privacy and emotional state
 When a user uploads an image, analyze their facial expression to determine their emotional state. 
 Then, provide music recommendations tailored to their current mood, explaining briefly why each suggestion might resonate with them emotionally.
-Provide them YouTube and Spotify link of the music along with the name of the songs suggested. 
 """
 if ssubmit:
     image_data = input_image_details(uploaded_file)
