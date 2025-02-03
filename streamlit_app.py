@@ -25,9 +25,9 @@ def input_image_details(uploaded_file):
     
 st.set_page_config(page_title = "RythRec")
 st.sidebar.header("Mood's Recommendation")
-st.sidebar.write("I'm OP")
+st.sidebar.write("Lassgooo")
 st.header("Mood's Recommendation")
-st.subheader("Check your mood and I'll suggest")
+st.subheader("Check your mood and I'll suggest songs")
 input = st.text_input("What do you want me to do?",key = "input")
 uploaded_file = st.file_uploader("Choose an image",type = ["jpg","jpeg","png"])
 image = ""
@@ -53,13 +53,14 @@ Ability to suggest songs, playlists, or genres based on detected mood
 Provide friendly and empathetic responses
 Offer brief explanations for music suggestions
 Respect user privacy and emotional state
-When a user uploads an image, analyze their facial expression to determine their emotional state. Then, provide music recommendations tailored to their current mood, explaining briefly why each suggestion might resonate with them emotionally.
-Provide the YouTube and Spotify link along with the name of the songs
+When a user uploads an image, analyze their facial expression to determine their emotional state. 
+Then, provide music recommendations tailored to their current mood, explaining briefly why each suggestion might resonate with them emotionally.
+Provide the YouTube and Spotify link of the music along with the name of the songs suggested. 
 """
 if ssubmit:
     image_data = input_image_details(uploaded_file)
     response = get_gemini_response(input_prompt,image_data,input)
-    st.subheader("Here's what you need to know!")
+    st.subheader("Here you go!")
     st.write(response)
 
 
