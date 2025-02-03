@@ -6,8 +6,19 @@ import google.generativeai as genai
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 genai.configure(api_key = "AIzaSyCLgJyAj-H8tJKG8c4bptHy1jHvi6-Vu2s")
+
 def get_gemini_response(input_text, image_data, prompt):
-    response = model.generate_content([input_text, image_data[0], prompt])
+    safety_settings = [
+        {
+            "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "threshold": "BLOCK_NONE",
+        },
+    ]
+    response = model.generate_content(
+        [input_text, image_data[0], prompt],
+        safety_settings=safety_settings,
+        generation_config={"temperature": 0.8, "top_p": 1, "top_k": 32}
+    )
     return response.text
 
 def input_image_details(uploaded_file):
@@ -26,6 +37,7 @@ def input_image_details(uploaded_file):
 st.set_page_config(page_title = "RythRec")
 st.sidebar.header("Mood's Recommendation")
 st.sidebar.write("Lassgooo")
+st.sidebar.warning("Note: Don't use this too much otherwise you'll fall for this.")
 st.header("Mood's Recommendation")
 st.subheader("Check your mood and I'll suggest songs")
 input = st.text_input("Ask me to suggest?",key = "input")
@@ -39,7 +51,6 @@ ssubmit = st.button("Submit")
 
 input_prompt = """
 You are an advanced AI music expert with the following capabilities:
-You will provide the links for the suggested songs of YouTube and Spotify along with songs. 
 🎵 Musical Expertise:
 Comprehensive knowledge of various music genres, artists, and styles
 Understanding of music theory and composition
@@ -56,11 +67,16 @@ Offer brief explanations for music suggestions
 Respect user privacy and emotional state
 When a user uploads an image, analyze their facial expression to determine their emotional state. 
 Then, provide music recommendations tailored to their current mood, explaining briefly why each suggestion might resonate with them emotionally.
+For each song recommendation, provide both YouTube and Spotify links.
+Format your response as follows:
+1. Song Title - Artist
+   - Reason for recommendation
+   - YouTube link: [insert link]
+   - Spotify link: [insert link]
 """
+
 if ssubmit:
     image_data = input_image_details(uploaded_file)
     response = get_gemini_response(input_prompt,image_data,input)
     st.subheader("Here you go!")
     st.write(response)
-
-
