@@ -28,7 +28,7 @@ st.sidebar.header("Mood's Recommendation")
 st.sidebar.write("Lassgooo")
 st.header("Mood's Recommendation")
 st.subheader("Check your mood and I'll suggest songs")
-input = st.text_input("What do you want me to do?",key = "input")
+input = st.text_input("Ask me to suggest?",key = "input")
 uploaded_file = st.file_uploader("Choose an image",type = ["jpg","jpeg","png"])
 image = ""
 if uploaded_file is not None:
